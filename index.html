@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>软软番茄钟</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="hero-card">
+        <div class="hero-copy">
+          <p class="eyebrow">Offline Pomodoro</p>
+          <h1>软软番茄钟</h1>
+          <p class="subtitle">
+            选一只小伙伴陪你专注。所有功能都在本地运行，不需要联网。
+          </p>
+        </div>
+
+        <div class="hero-stage" id="heroStage" aria-live="polite">
+          <div class="hero-avatar is-active" id="heroMascot"></div>
+          <p class="stage-label" id="stageLabel">准备开始一轮轻巧专注</p>
+        </div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <div>
+            <p class="section-kicker">时间选择</p>
+            <h2>挑一个节奏</h2>
+          </div>
+          <label class="sound-toggle">
+            <input type="checkbox" id="soundEnabled" checked />
+            <span class="sound-ui">
+              <span class="toggle-knob"></span>
+            </span>
+            <span>声音提醒</span>
+          </label>
+        </div>
+
+        <div class="preset-grid" id="presetGrid">
+          <button class="preset-card" data-minutes="30" data-mode="focus">
+            <span class="preset-badge">30 mins</span>
+            <span class="preset-illustration bunny">
+              <span class="bunny-ear ear-left"></span>
+              <span class="bunny-ear ear-right"></span>
+              <span class="bunny-face">
+                <span class="eye"></span>
+                <span class="eye"></span>
+                <span class="mouth"></span>
+              </span>
+            </span>
+            <strong>长一点点</strong>
+            <small>适合沉浸冲刺</small>
+          </button>
+
+          <button class="preset-card" data-minutes="15" data-mode="calm">
+            <span class="preset-badge">15 mins</span>
+            <span class="preset-illustration bear">
+              <span class="bear-ear ear-left"></span>
+              <span class="bear-ear ear-right"></span>
+              <span class="bear-face">
+                <span class="eye"></span>
+                <span class="eye"></span>
+                <span class="mouth"></span>
+              </span>
+            </span>
+            <strong>刚刚好</strong>
+            <small>适合短时推进</small>
+          </button>
+
+          <button class="preset-card" data-minutes="5" data-mode="quick">
+            <span class="preset-badge">5 mins</span>
+            <span class="preset-illustration chick">
+              <span class="chick-face">
+                <span class="eye"></span>
+                <span class="eye"></span>
+                <span class="mouth"></span>
+              </span>
+            </span>
+            <strong>热身一下</strong>
+            <small>适合快速起步</small>
+          </button>
+
+          <button class="preset-card custom-card" data-custom-trigger="true">
+            <span class="preset-badge">Custom</span>
+            <span class="preset-illustration cat">
+              <span class="cat-ear ear-left"></span>
+              <span class="cat-ear ear-right"></span>
+              <span class="cat-face">
+                <span class="eye"></span>
+                <span class="eye"></span>
+                <span class="mouth"></span>
+              </span>
+            </span>
+            <strong>自己决定</strong>
+            <small>按时 : 分自由选</small>
+          </button>
+        </div>
+
+        <div class="custom-panel" id="customPanel" hidden>
+          <div class="custom-copy">
+            <p class="section-kicker">自定义时间</p>
+            <h3>把专注时长调成你喜欢的样子</h3>
+          </div>
+          <div class="time-picker">
+            <label>
+              <span>时</span>
+              <select id="customHours" aria-label="自定义小时"></select>
+            </label>
+            <span class="time-separator">:</span>
+            <label>
+              <span>分</span>
+              <select id="customMinutes" aria-label="自定义分钟"></select>
+            </label>
+            <button class="apply-custom" id="applyCustom" type="button">使用这个时间</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="timer-card">
+        <div class="timer-head">
+          <div>
+            <p class="section-kicker">当前倒计时</p>
+            <h2 id="timerTitle">还没有开始</h2>
+          </div>
+          <div class="status-pill" id="statusPill">空闲中</div>
+        </div>
+
+        <div class="timer-core">
+          <div class="timer-ring">
+            <svg viewBox="0 0 120 120" class="ring-svg" aria-hidden="true">
+              <circle class="ring-track" cx="60" cy="60" r="48"></circle>
+              <circle class="ring-progress" id="ringProgress" cx="60" cy="60" r="48"></circle>
+            </svg>
+            <div class="timer-readout">
+              <span class="time-text" id="timeDisplay">00:00</span>
+              <span class="time-subtext" id="timeSubtext">请选择一个倒计时</span>
+            </div>
+          </div>
+
+          <div class="controls">
+            <button id="startPauseBtn" class="primary-btn" type="button" disabled>开始</button>
+            <button id="stopBtn" class="secondary-btn" type="button" disabled>停止</button>
+            <button id="resetBtn" class="ghost-btn" type="button" disabled>重置</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
